@@ -28,6 +28,25 @@ app.get('/listings/:id', (req, res) => {
   })
 })
 
+app.delete('/listings/:id', (req, res) => {
+  Listing.deleteOne({id: req.params.id}, (err) => {
+    if (err) console.log(err);
+  })
+});
+
+app.put('/listings/:id', (req, res) => {
+  Listing.updateOne({}, (err) => {
+    if (err) console.log(err);
+  })
+});
+
+app.post('/listings', (req, res) => {
+   const listing = new Listing(req.body.listing);
+   listing.save((err) => {
+     if (err) console.log(err);
+   })
+});
+
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
