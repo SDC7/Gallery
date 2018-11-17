@@ -21,7 +21,7 @@ class Site extends React.Component {
   }
 
   grabPhotos() {
-    fetch(`http://specialtry-env.bhn5ugntnq.us-east-1.elasticbeanstalk.com/listings/${this.randomList()}`)
+    fetch(`http://localhost:1128/listings/${this.randomList()}`)
       .then(res => {
         return res.json();
       })
