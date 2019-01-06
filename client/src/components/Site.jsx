@@ -17,23 +17,25 @@ class Site extends React.Component {
     }
     this.onPhotoPress = this.onPhotoPress.bind(this)
     this.onClosePress = this.onClosePress.bind(this)
-    
+    this.grabPhotos = this.grabPhotos.bind(this);
   }
 
   grabPhotos() {
-    fetch(`http://localhost:1128/listings/${this.randomList()}`)
+    fetch(`/gallery/${this.randomList()}`)
       .then(res => {
         return res.json();
       })
       .then(result => {
-        this.setState({
-          mainPicture: result[0].urls[0],
-          picture1: result[0].urls[1],
-          picture2: result[0].urls[2],
-          picture3: result[0].urls[3],
-          picture4: result[0].urls[4],
-          pictures: result[0].urls
-        })
+        console.log(result);
+        console.log(result[0].url);
+          this.setState({
+            mainPicture: { url: result[0].url, alt: result[0].alt },
+            picture1: { url: result[1].url, alt: result[1].alt },
+            picture2: { url: result[2].url, alt: result[2].alt },
+            picture3: { url: result[3].url, alt: result[3].alt },
+            picture4: { url: result[4].url, alt: result[4].alt },
+            pictures: { url: result[5].url, alt: result[5].alt }
+          })
       })
   }
 
@@ -54,7 +56,7 @@ class Site extends React.Component {
     })
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.grabPhotos();
   }
 

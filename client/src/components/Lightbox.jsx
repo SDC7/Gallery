@@ -14,19 +14,19 @@ class Lightbox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pictures: [],
+      pictures: {},
       currentIndex: 0,
       translateValue: 0
     }
 
     this.goToPrevSlide = this.goToPrevSlide.bind(this);
     this.goToNextSlide = this.goToNextSlide.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
     this.setState({
-      pictures: this.props.props.pictures,
+      pictures: this.props.props,
     })
   }
 
@@ -54,9 +54,9 @@ class Lightbox extends React.Component {
     }));
   }
 
-  handleClick() {
-    this.props.close
-  }
+  // handleClick() {
+  //   this.props.close
+  // }
 
   slideWidth() {
     return document.querySelector('.slide').clientWidth
@@ -76,8 +76,8 @@ class Lightbox extends React.Component {
             transition: 'transform ease-out 0.45s'
           }}>
             {
-              this.state.pictures.map((image, i) => (
-                <Slide key={i} image={image.url} caption={image.alt}/>
+              Object.entries(this.state.pictures).map(([ key, image ], i) => (
+                <Slide key={Math.random()*i} image={image.url} caption={image.alt}/>
               ))
             }
         </div>

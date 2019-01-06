@@ -1,7 +1,7 @@
 {
   "name": "airjld",
   "version": "1.0.0",
-  "description": "our airjld app",
+  "description": "Airjld-listing-gallery",
   "author": "dmoney",
   "license": "ISC",
   "engines": {
@@ -16,9 +16,9 @@
     ]
   },
   "scripts": {
-    "start": "node server/index.js",
-    "dev:react": "webpack -d --watch",
-    "db:setup": "node database/seed.js",
+    "start": "node server/server.js",
+    "build:dev": "webpack -d --watch",
+    "build": "webpack -p --optimize-minimize",
     "lint": "eslint ./database ./server",
     "test": "jest"
   },
@@ -34,6 +34,7 @@
     "mongoose": "^5.3.7",
     "mysql2": "^1.6.4",
     "node-fetch": "^2.2.0",
+    "pg": "^7.6.1",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-responsive": "^6.0.1"
